@@ -117,7 +117,7 @@ DESCRIBE EXTENDED students
 
 -- COMMAND ----------
 
-DESCRIBE DETAIL students
+DESCRIBE HISTORY students
 
 -- COMMAND ----------
 
@@ -328,6 +328,10 @@ RESTORE TABLE students TO VERSION AS OF 8
 
 -- COMMAND ----------
 
+DESCRIBE HISTORY students
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-902966c3-830a-44db-9e59-dec82b98a9c2
 -- MAGIC %md
 -- MAGIC
@@ -353,7 +357,7 @@ RESTORE TABLE students TO VERSION AS OF 8
 
 -- COMMAND ----------
 
--- VACUUM students RETAIN 0 HOURS
+VACUUM students RETAIN 0 HOURS
 
 -- COMMAND ----------
 

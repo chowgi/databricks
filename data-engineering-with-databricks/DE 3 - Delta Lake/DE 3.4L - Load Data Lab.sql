@@ -72,7 +72,20 @@
 -- COMMAND ----------
 
 -- TODO
-<FILL_IN>
+CREATE TABLE events_raw
+(
+  key BINARY, 
+  offset LONG, 
+  partition INTEGER, 
+  timestamp LONG, 
+  topic STRING, 
+  value BINARY
+)
+
+
+-- COMMAND ----------
+
+DESCRIBE EXTENDED events_raw
 
 -- COMMAND ----------
 
@@ -114,8 +127,11 @@
 
 -- COMMAND ----------
 
--- TODO
-<FILL_IN>
+MERGE INTO events_raw AS a
+USING events_json AS b
+ON a.key = b.key
+WHEN NOT MATCHED THEN
+   INSERT *
 
 -- COMMAND ----------
 
@@ -129,7 +145,7 @@
 -- COMMAND ----------
 
 -- TODO
-<FILL_IN>
+SELECT * FROM events_raw
 
 -- COMMAND ----------
 
@@ -171,8 +187,11 @@
 
 -- COMMAND ----------
 
--- TODO
-<FILL_IN> ${da.paths.datasets}/ecommerce/raw/item-lookup
+CREATE TABLE item_lookup
+USING parquet
+OPTIONS (
+  path '${da.paths.datasets}/ecommerce/raw/item-lookup'
+)
 
 -- COMMAND ----------
 
